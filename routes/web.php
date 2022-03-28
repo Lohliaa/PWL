@@ -5,6 +5,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\SuplierController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\PegawaiController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +22,15 @@ use Illuminate\Http\Request;
 |
 */
 
+// Route::get('/',function (){return view('index');});
+
+// Route::get('/',[HomeController::class, 'index']);
+Route::get('/suplier',[SuplierController::class, 'suplier'])->name('suplier');
+Route::get('/pelanggan',[PelangganController::class, 'pelanggan'])->name('pelanggan');
+// -------------------------------------------------------------------------------//
+Route::get('/barang',[BarangController::class, 'barang'])->name('barang');
+Route::get('/pegawai',[PegawaiController::class, 'pegawai'])->name('pegawai');
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -23,4 +38,6 @@ Route::get('/', function () {
 //Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 Route::resource('mahasiswa', MahasiswaController::class);
+
