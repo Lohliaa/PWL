@@ -20,7 +20,9 @@ class MahasiswaSeeder extends Seeder
             'Nama' => 'Lia Puspita Dewi',
             'Kelas' => 'TI-2E',
             'Jurusan' => 'Teknologi Informasi',
-            'No_handphone' => '085856145307'
+            'No_handphone' => '085856145307',
+            'Email' => 'LiaAufarrahman09@gmail.com',
+            'Tanggal_Lahir' => '2001/09/13'
         ]);
     }
 }

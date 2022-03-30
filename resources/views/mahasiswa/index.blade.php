@@ -24,6 +24,8 @@
         <th>Kelas</th>
         <th>Jurusan</th>
         <th>No_handphone</th>
+        <th>Email</th>
+        <th>Tanggal_Lahir</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($mahasiswa as $Mahasiswa)
@@ -34,6 +36,8 @@
     <td>{{ $Mahasiswa->Kelas }}</td>
     <td>{{ $Mahasiswa->Jurusan }}</td>
     <td>{{ $Mahasiswa->No_handphone }}</td>
+    <td>{{ $Mahasiswa->Email }}</td>
+    <td>{{ $Mahasiswa->Tanggal_Lahir }}</td>
     <td>
     <form action="{{ route('mahasiswa.destroy',$Mahasiswa->Nim) }}" method="POST">
   
@@ -47,5 +51,14 @@
         </tr>
         @endforeach
     </table>
+
+            <br><br>
+
+              Halaman : {{ $mahasiswa->currentPage() }} <br>
+              Jumlah Data : {{ $mahasiswa->total() }} <br>
+              Data Per Halaman : {{ $mahasiswa->perPage() }}
+
+              {{ $mahasiswa->links() }}
+
 @endsection
  
