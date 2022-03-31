@@ -10,7 +10,13 @@
             </div>
         </div>
     </div>
-  
+    
+    <form action= {{ url('mahasiswa') }} method="GET">
+		{{--  {{ @csrf_field() }}  --}}
+		<input type="text" name="keyword" value="{{ $keyword }}"placeholder="Ingin mencari apa ?" class="form-control"><br>
+		<input type="submit" class="btn btn-md btn-outline-primary" >
+	</form>
+    
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -23,9 +29,9 @@
         <th>Nama</th>
         <th>Kelas</th>
         <th>Jurusan</th>
-        <th>No_handphone</th>
+        <th>No Handphone</th>
         <th>Email</th>
-        <th>Tanggal_Lahir</th>
+        <th>Tanggal Lahir</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($mahasiswa as $Mahasiswa)
@@ -52,13 +58,15 @@
         @endforeach
     </table>
 
-            <br><br>
+    <br><br>
 
+    <p style="text-align:center">
               Halaman : {{ $mahasiswa->currentPage() }} <br>
-              Jumlah Data : {{ $mahasiswa->total() }} <br>
-              Data Per Halaman : {{ $mahasiswa->perPage() }}
-
+              Jumlah Data : {{ $mahasiswa->total() }} <br> 
+              Data Per Halaman : {{ $mahasiswa->perPage() }} 
+              
               {{ $mahasiswa->links() }}
+    </p>
 
 @endsection
  

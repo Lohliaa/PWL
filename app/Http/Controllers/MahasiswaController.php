@@ -13,11 +13,14 @@ class MahasiswaController extends Controller
      */
     public function index(Request $request)
     {
-        //fungsi eloquent menampilkan data menggunakan pagination
-        $mahasiswa = Mahasiswa::paginate(5); // Mengambil semua isi tabel
-        $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
-        return view('mahasiswa.index', compact('mahasiswa'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+    
+            // fungsi untuk mencari nama mahasiswa dengan pencarian dan menggunakan paginate    
+            $keyword = $request->keyword;
+            $mahasiswa = Mahasiswa::where('Nama', 'LIKE', '%'.$keyword.'%')->paginate(5);
+            
+            $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
+            return view('mahasiswa.index', compact('mahasiswa','keyword'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);  
     }
 
     /**
