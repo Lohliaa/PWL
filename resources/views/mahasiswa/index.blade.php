@@ -29,7 +29,6 @@
         <th>Nama</th>
         <th>Kelas</th>
         <th>Jurusan</th>
-        <th>No Handphone</th>
         <th>Email</th>
         <th>Tanggal Lahir</th>
         <th width="280px">Action</th>
@@ -41,7 +40,6 @@
     <td>{{ $Mahasiswa->Nama }}</td>
     <td>{{ $Mahasiswa->Kelas->nama_kelas }}</td>
     <td>{{ $Mahasiswa->Jurusan }}</td>
-    <td>{{ $Mahasiswa->No_handphone }}</td>
     <td>{{ $Mahasiswa->Email }}</td>
     <td>{{ $Mahasiswa->Tanggal_Lahir }}</td>
     <td>

@@ -33,25 +33,26 @@
                 </div>
                 <div class="form-group">
                     <label for="Kelas">Kelas</label> 
-                    <input type="Kelas" name="Kelas" class="form-control" id="Kelas" value="{{ $Mahasiswa->Kelas }}" aria-describedby="Kelas" > 
+                    <select class="form-control" name='Kelas'>
+                        @foreach($kelas as $kls)
+                            <option value="{{ $kls->id }}" {{ $mahasiswa->kelas_id == $kls->id ? 'selected' : '' }}>{{ $kls->nama_kelas }}</option>                       
+                        @endforeach 
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="Jurusan">Jurusan</label> 
                     <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->Jurusan }}" aria-describedby="Jurusan" > 
                 </div>
                 <div class="form-group">
-                    <label for="No_handphone">No_Handphone</label> 
-    
-                    <input type="No_handphone" name="No_handphone" class="form-control" id="No_handphone" value="{{ $Mahasiswa->No_handphone }}" aria-describedby="No_handphone" > 
+                    <label for="No_Handphone">No_Handphone</label> 
+                    <input type="No_Handphone" name="No_Handphone" class="form-control" id="No_Handphone" value="{{ $Mahasiswa->No_Handphone }}" aria-describedby="No_Handphone" > 
                 </div>
                 <div class="form-group">
                     <label for="Email">Email</label> 
-    
                     <input type="Email" name="Email" class="form-control" id="Email" value="{{ $Mahasiswa->Email }}" aria-describedby="Email" > 
                 </div>
                 <div class="form-group">
                     <label for="Tanggal_Lahir">Tanggal_Lahir</label> 
-    
                     <input type="Tanggal_Lahir" name="Tanggal_Lahir" class="form-control" id="Tanggal_Lahir" value="{{ $Mahasiswa->Tanggal_Lahir }}" aria-describedby="Tanggal_Lahir" > 
                 </div>
             <button type="submit" class="btn btn-primary">Submit</button>
