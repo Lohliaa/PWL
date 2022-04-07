@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use App\Models\Kelas;
 
 class MahasiswaController extends Controller
 {
@@ -11,16 +12,19 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
+        $mahasiswa = Mahasiswa::with('kelas')->get();
+        $paginate = Mahasiswa::OrderBy('Nama', 'asc')->paginate(3);
+                   
+        return view('mahasiswa.index', ['mahasiswa' => $mahasiswa,'paginate'=>$paginate]);
     
             // fungsi untuk mencari nama mahasiswa dengan pencarian dan menggunakan paginate    
-            $keyword = $request->keyword;
-            $mahasiswa = Mahasiswa::where('Nama', 'LIKE', '%'.$keyword.'%')->paginate(5);
-            
-            $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
-            return view('mahasiswa.index', compact('mahasiswa','keyword'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);  
+            //$keyword = $request->keyword;
+            //$mahasiswa = Mahasiswa::where('Nama', 'LIKE', '%'.$keyword.'%')->paginate(5);
+            //yang semula Mahasiswa::all, diubah menjadi with() yang menyatakan relasi
+            //$posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
+            //with('i', ($request->input('page', 1) - 1) * 5);  
     }
 
     /**

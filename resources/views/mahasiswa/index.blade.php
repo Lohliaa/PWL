@@ -11,11 +11,11 @@
         </div>
     </div>
     
-    <form action= {{ url('mahasiswa') }} method="GET">
+    {{--  <form action= {{ url('mahasiswa') }} method="GET">  --}}
 		{{--  {{ @csrf_field() }}  --}}
-		<input type="text" name="keyword" value="{{ $keyword }}"placeholder="Ingin mencari apa ?" class="form-control"><br>
+		{{--  <input type="text" name="keyword" value="{{ $keyword }}"placeholder="Ingin mencari apa ?" class="form-control"><br>
 		<input type="submit" class="btn btn-md btn-outline-primary" >
-	</form>
+	</form>  --}}
     
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -34,12 +34,12 @@
         <th>Tanggal Lahir</th>
         <th width="280px">Action</th>
     </tr>
-    @foreach ($mahasiswa as $Mahasiswa)
+    @foreach ($paginate as $Mahasiswa)
     <tr>
   
     <td>{{ $Mahasiswa->Nim }}</td>
     <td>{{ $Mahasiswa->Nama }}</td>
-    <td>{{ $Mahasiswa->Kelas }}</td>
+    <td>{{ $Mahasiswa->Kelas->nama_kelas }}</td>
     <td>{{ $Mahasiswa->Jurusan }}</td>
     <td>{{ $Mahasiswa->No_handphone }}</td>
     <td>{{ $Mahasiswa->Email }}</td>
@@ -61,11 +61,11 @@
     <br><br>
 
     <p style="text-align:center">
-              Halaman : {{ $mahasiswa->currentPage() }} <br>
-              Jumlah Data : {{ $mahasiswa->total() }} <br> 
-              Data Per Halaman : {{ $mahasiswa->perPage() }} 
+              Halaman : {{ $paginate->currentPage() }} <br>
+              Jumlah Data : {{ $paginate->total() }} <br> 
+              Data Per Halaman : {{ $paginate->perPage() }} 
               
-              {{ $mahasiswa->links() }}
+              {{ $paginate->links() }}
     </p>
 
 @endsection
