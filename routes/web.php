@@ -11,6 +11,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PegawaiController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,4 +41,5 @@ Route::get('/', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::resource('mahasiswa', MahasiswaController::class);
-
+Route::get('/search', [MahasiswaController::class, 'search'])->name('search');
+Route::get('/mahasiswa/nilai/{mahasiswa}', [MahasiswaController::class, 'mhsMatkul'])->name('nilai');

@@ -11,11 +11,11 @@
         </div>
     </div>
     
-    {{--  <form action= {{ url('mahasiswa') }} method="GET">  --}}
+        <form class="form" method="get" action="{{ route('search') }}">
 		{{--  {{ @csrf_field() }}  --}}
-		{{--  <input type="text" name="keyword" value="{{ $keyword }}"placeholder="Ingin mencari apa ?" class="form-control"><br>
+		<input type="text" name="search" placeholder="Ingin mencari apa ?" class="form-control"><br>
 		<input type="submit" class="btn btn-md btn-outline-primary" >
-	</form>  --}}
+	</form>
     
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -47,6 +47,7 @@
   
     <a class="btn btn-info" href="{{ route('mahasiswa.show',$Mahasiswa->Nim) }}">Show</a>
     <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$Mahasiswa->Nim) }}">Edit</a>
+    <a class="btn btn-warning" href="{{route('nilai',$Mahasiswa->Nim) }}"> Nilai</a>
     @csrf
     @method('DELETE')
     <button type="submit" class="btn btn-danger">Delete</button>
