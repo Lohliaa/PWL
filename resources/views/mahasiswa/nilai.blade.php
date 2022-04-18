@@ -6,26 +6,29 @@
 
         <br><br><br>
 
-        <b>Nama:</b> {{ $mahasiswa->Nama}}<br>
-        <b>NIM: </b>{{ $mahasiswa->Nim}}<br>
-        <b>Kelas: </b> {{ $mahasiswa->kelas->nama_kelas}}<br>
+        <b>Nama:</b> {{ $mahasiswa->Nama }}<br>
+        <b>NIM: </b>{{ $mahasiswa->Nim }}<br>
+        <b>Kelas: </b> {{ $mahasiswa->kelas->nama_kelas }}<br>
         
         <br>
         <table class="table table-bordered">
             <tr>
-            <th>Matakuliah</th>
-            <th>SKS</th>
-            <th>Semester</th>
-            <th>Nilai</th>
+                <th>Matakuliah</th>
+                <th>SKS</th>
+                <th>Semester</th>
+                <th>Nilai</th>
             </tr>
-            @foreach ($mahasiswa -> matakuliah as $nilai)
-            <tr>
-            <td>{{ $nilai->nama_matkul }}</td>
-            <td>{{ $nilai->sks }}</td>
-            <td>{{ $nilai->semester }}</td>
-            <td>{{ $nilai->pivot->nilai }}</td>
-            </tr>
+            @foreach ($mahasiswa->matakuliah as $nilai)
+                <tr>
+                    <td>{{ $nilai->nama_matkul }}</td>
+                    <td>{{ $nilai->sks }}</td>
+                    <td>{{ $nilai->semester }}</td>
+                    <td>{{ $nilai->pivot->nilai }}</td>
+                </tr>
             @endforeach
             </table>
+        </table>
+        <br>
+        <center><a class="btn btn-danger" href="{{ route('cetakpdf', $mahasiswa->Nim) }}"> Cetak Ke PDF</a></center>
     </div>
-@endsection
+@endsection 
