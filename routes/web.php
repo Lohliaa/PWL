@@ -10,6 +10,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\PegawaiController;
 
+use App\Http\Controllers\ArticleController;
 
 
 /*
@@ -43,3 +44,5 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('mahasiswa', MahasiswaController::class);
 Route::get('/search', [MahasiswaController::class, 'search'])->name('search');
 Route::get('/mahasiswa/nilai/{mahasiswa}', [MahasiswaController::class, 'mhsMatkul'])->name('nilai');
+
+Route::resource('articles', ArticleController::class);
