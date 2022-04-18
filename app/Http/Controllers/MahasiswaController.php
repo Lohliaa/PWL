@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
-use App\Models\Mahasiswa_Matakuliah;
-use App\Models\Matakuliah;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -56,6 +55,7 @@ class MahasiswaController extends Controller
         $request->validate([
             'Nim' => 'required',
             'Nama' => 'required',
+            'Foto' => 'required|file|image|mimes:jpeg,png,jpg|max:1024',
             'Kelas' => 'required',
             'Jurusan' => 'required',
             'No_Handphone' => 'required',
@@ -66,6 +66,7 @@ class MahasiswaController extends Controller
         $mahasiswa = new Mahasiswa;
         $mahasiswa->Nim = $request->get('Nim');
         $mahasiswa->Nama = $request->get('Nama');
+        $mahasiswa->Foto = $request->file('Foto')->store('images', 'public');
         $mahasiswa->Jurusan = $request->get('Jurusan');
         $mahasiswa->No_Handphone = $request->get('No_Handphone');
         $mahasiswa->Email = $request->get('Email');
@@ -107,9 +108,10 @@ class MahasiswaController extends Controller
     public function edit($Nim)
     {
         //Menampilkan detail data dengan menemukan berdasarkan Nim Mahasiswa untuk diedit
-        $mahasiswa = Mahasiswa::with('kelas')->where('Nim', $Nim)->first();
+        $Mahasiswa = Mahasiswa::with('kelas')->where('Nim', $Nim)->first();
+
         $kelas = Kelas::all(); //mendapatkan data dari tabel kelas
-        return view('mahasiswa.edit', compact('mahasiswa', 'kelas'));
+        return view('mahasiswa.edit', compact('Mahasiswa', 'kelas'));
     }
 
     /**
@@ -125,6 +127,7 @@ class MahasiswaController extends Controller
         $request->validate([
             'Nim' => 'required',
             'Nama' => 'required',
+            'Foto' => 'required|file|image|mimes:jpeg,png,jpg|max:1024',
             'Kelas' => 'required',
             'Jurusan' => 'required',
             'Email' => 'required',
@@ -134,6 +137,11 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::with('kelas')->where('Nim', $Nim)->first();
         $mahasiswa->Nim = $request->get('Nim');
         $mahasiswa->Nama = $request->get('Nama');
+        if($mahasiswa->Foto && file_exists(storage_path('app/public/'. $mahasiswa->Foto))){
+            \Storage::delete('public/'. $mahasiswa->Foto);
+        }
+        $image_name = $request->file('Foto')->store('images', 'public');
+        $mahasiswa->Foto = $image_name;
         $mahasiswa->Jurusan = $request->get('Jurusan');
         $mahasiswa->Email = $request->get('Email');
         $mahasiswa->Tanggal_Lahir = $request->get('Tanggal_Lahir');

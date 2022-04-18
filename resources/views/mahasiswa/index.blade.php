@@ -27,10 +27,11 @@
         <tr>
         <th>Nim</th>
         <th>Nama</th>
+        <th>Foto</th>
         <th>Kelas</th>
         <th>Jurusan</th>
         <th>Email</th>
-        <th>Tanggal Lahir</th>
+        <th>Tanggal_Lahir</th>
         <th width="280px">Action</th>
     </tr>
     @foreach ($paginate as $Mahasiswa)
@@ -38,6 +39,7 @@
   
     <td>{{ $Mahasiswa->Nim }}</td>
     <td>{{ $Mahasiswa->Nama }}</td>
+    <td><img width="100px" height="100px" src="{{ asset('storage/' . $Mahasiswa->Foto) }}"></td>
     <td>{{ $Mahasiswa->Kelas->nama_kelas }}</td>
     <td>{{ $Mahasiswa->Jurusan }}</td>
     <td>{{ $Mahasiswa->Email }}</td>
